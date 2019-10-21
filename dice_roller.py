@@ -16,15 +16,11 @@ __author__ = 'Marcello Lamonaca'
 __copyright__ = 'Copyright 2019, Marcello Lamonaca'
 __credits__ = ['Marcello Lamonaca']
 __license__ = 'MIT'
-__version__ = '0.2.0'
+__version__ = '0.2.1'
 __maintainer__ = 'Marcello Lamonaca'
 __email__ = ''
 __status__ = 'dev'
 
-# TODO 2: sum results of different dices (single output)
-# TODO 3: let choose between single output or output per dice + single output
-# TODO 4: add DX roll
-# TODO 5: (OTIONAL) decide sign of modifier with radiobutton
 
 random.seed()  # initialize pseudo-random numbers
 
@@ -35,6 +31,13 @@ def DX(rolls_num, dice_sides, modifier):
         - number of rolls
         - number of sides
         - roll modifier (applied after dices rolls)"""
+
+    # modifier is StringVar to accept empty entry fields
+    try:
+        modifier = int(modifier)
+    except ValueError:
+        modifier = 0
+
     # sums result of gen-exp that generates randint between 1 and dice_sides roll_num-times
     result = sum(random.randint(1, dice_sides) for i in range(rolls_num)) + modifier
     if result <= 0:
@@ -106,7 +109,7 @@ if __name__ == '__main__':
     D4_result = tk.IntVar()
     D4_modifier_label = ttk.Label(input_frame, text='MODIFIER')
     D4_modifier_label.grid(column=3, row=1, padx=label_padx)
-    D4_modifier_var = tk.IntVar()
+    D4_modifier_var = tk.StringVar()
     D4_modifier_entry = ttk.Entry(input_frame, textvariable=D4_modifier_var)
     D4_modifier_entry.grid(column=4, row=1, padx=entry_padx)
     D4_button = ttk.Button(input_frame, text='ROLL', command=D4_roll)
@@ -121,7 +124,7 @@ if __name__ == '__main__':
     D6_result = tk.IntVar()
     D6_modifier_label = ttk.Label(input_frame, text='MODIFIER')
     D6_modifier_label.grid(column=3, row=2, padx=label_padx)
-    D6_modifier_var = tk.IntVar()
+    D6_modifier_var = tk.StringVar()
     D6_modifier_entry = ttk.Entry(input_frame, textvariable=D6_modifier_var)
     D6_modifier_entry.grid(column=4, row=2, padx=entry_padx)
     D6_button = ttk.Button(input_frame, text='ROLL', command=D6_roll)
@@ -136,7 +139,7 @@ if __name__ == '__main__':
     D8_result = tk.IntVar()
     D8_modifier_label = ttk.Label(input_frame, text='MODIFIER')
     D8_modifier_label.grid(column=3, row=3, padx=label_padx)
-    D8_modifier_var = tk.IntVar()
+    D8_modifier_var = tk.StringVar()
     D8_modifier_entry = ttk.Entry(input_frame, textvariable=D8_modifier_var)
     D8_modifier_entry.grid(column=4, row=3, padx=entry_padx)
     D8_button = ttk.Button(input_frame, text='ROLL', command=D8_roll)
@@ -151,7 +154,7 @@ if __name__ == '__main__':
     D10_result = tk.IntVar()
     D10_modifier_label = ttk.Label(input_frame, text='MODIFIER')
     D10_modifier_label.grid(column=3, row=4, padx=label_padx)
-    D10_modifier_var = tk.IntVar()
+    D10_modifier_var = tk.StringVar()
     D10_modifier_entry = ttk.Entry(input_frame, textvariable=D10_modifier_var)
     D10_modifier_entry.grid(column=4, row=4, padx=entry_padx)
     D10_button = ttk.Button(input_frame, text='ROLL', command=D10_roll)
@@ -166,7 +169,7 @@ if __name__ == '__main__':
     D12_result = tk.IntVar()
     D12_modifier_label = ttk.Label(input_frame, text='MODIFIER')
     D12_modifier_label.grid(column=3, row=5, padx=label_padx)
-    D12_modifier_var = tk.IntVar()
+    D12_modifier_var = tk.StringVar()
     D12_modifier_entry = ttk.Entry(input_frame, textvariable=D12_modifier_var)
     D12_modifier_entry.grid(column=4, row=5, padx=entry_padx)
     D12_button = ttk.Button(input_frame, text='ROLL', command=D12_roll)
@@ -181,7 +184,7 @@ if __name__ == '__main__':
     D20_result = tk.IntVar()
     D20_modifier_label = ttk.Label(input_frame, text='MODIFIER')
     D20_modifier_label.grid(column=3, row=6, padx=label_padx)
-    D20_modifier_var = tk.IntVar()
+    D20_modifier_var = tk.StringVar()
     D20_modifier_entry = ttk.Entry(input_frame, textvariable=D20_modifier_var)
     D20_modifier_entry.grid(column=4, row=6, padx=entry_padx)
     D20_button = ttk.Button(input_frame, text='ROLL', command=D20_roll)
@@ -196,11 +199,13 @@ if __name__ == '__main__':
     D100_result = tk.IntVar()
     D100_modifier_label = ttk.Label(input_frame, text='MODIFIER')
     D100_modifier_label.grid(column=3, row=7, padx=label_padx)
-    D100_modifier_var = tk.IntVar()
+    D100_modifier_var = tk.StringVar()
     D100_modifier_entry = ttk.Entry(input_frame, textvariable=D100_modifier_var)
     D100_modifier_entry.grid(column=4, row=7, padx=entry_padx)
     D100_button = ttk.Button(input_frame, text='ROLL', command=D100_roll)
     D100_button.grid(column=10, row=7, padx=button_padx, pady=std_pady)
+
+    # TODO: add DX roll
 
     # FRAME FOR OUTPUTS
     output_frame = ttk.Frame(root)
