@@ -12,16 +12,6 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
 
-__author__ = 'Marcello Lamonaca'
-__copyright__ = 'Copyright 2019, Marcello Lamonaca'
-__credits__ = ['Marcello Lamonaca']
-__license__ = 'MIT'
-__version__ = '0.2.2'
-__maintainer__ = 'Marcello Lamonaca'
-__email__ = ''
-__status__ = 'dev'
-
-
 random.seed()  # initialize pseudo-random numbers
 
 
